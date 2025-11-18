@@ -41,13 +41,13 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("update", (data) => {
-    if (players[data.id]) {
-      players[data.id].x = data.x;
-      players[data.id].y = data.y;
-      players[data.id].angle = data.angle;
-    }
-  });
+  // socket.on("update", (data) => {
+  //   if (players[data.id]) {
+  //     players[data.id].x = data.x;
+  //     players[data.id].y = data.y;
+  //     players[data.id].angle = data.angle;
+  //   }
+  // });
 
   // Handle disconnect
   socket.on("disconnect", () => {
