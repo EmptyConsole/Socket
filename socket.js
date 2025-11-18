@@ -23,11 +23,10 @@ io.on("connection", (socket) => {
   socket.broadcast.emit("newPlayer", { id: socket.id, ...players[socket.id] });
 
   // Movement updates from client
-  socket.on("move", (data) => {
+  socket.on("updateData", (data) => {
     if (!players[socket.id]) return;
-    players[socket.id].x = data.x;
-    players[socket.id].y = data.y;
-    io.emit("update", { id: socket.id, x: data.x, y: data.y });
+    players[socket.id] = data;
+    io.emit("update", {id: socket.id, data: data});
   });
 
   // Handle disconnect
