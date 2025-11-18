@@ -16,12 +16,12 @@ io.on("connection", (socket) => {
   socket.emit("initialState", players);
 
   // Notify others
-  io.emit("update", {
-  id: socket.id,
-  x: data.x,
-  y: data.y,
-  angle: data.angle
-});
+  socket.broadcast.emit("newPlayer", {
+    id: socket.id,
+    x: 800,
+    y: 800,
+    angle: 0
+  });
 
 
   // Receive movement updates
