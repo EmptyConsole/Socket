@@ -27,7 +27,7 @@ io.on("connection", (socket) => {
   // PLAYER CREATES A ROOM
   // ------------------------------
   socket.on("create_room", (roomName) => {
-    if (!rooms[roomName]&&rooms.findIndex(r=>r===roomName)===-1) {
+    if (!rooms[roomName]) {
       rooms[roomName] = { players: {} };
       console.log(`Room created: ${roomName}`);
     }
