@@ -57,13 +57,15 @@ io.on("connection", (socket) => {
       room.players[socket.id].x = data.x;
       room.players[socket.id].y = data.y;
       room.players[socket.id].angle = data.angle;
+      room.players[socket.id].cRoom = data.cRoom;
 
       // Send update to players IN THIS ROOM ONLY
       socket.to(roomName).emit("update", {
         id: socket.id,
         x: data.x,
         y: data.y,
-        angle: data.angle
+        angle: data.angle,
+        cRoom: data.cRoom
       });
     }
   });
@@ -103,7 +105,8 @@ function joinRoom(socket, roomName) {
   rooms[roomName].players[socket.id] = {
     x: 800,
     y: 800,
-    angle: 0
+    angle: 0,
+    cRoom: roomName
   };
 
   // Send existing players in this room to the newcomer
@@ -114,7 +117,8 @@ function joinRoom(socket, roomName) {
     id: socket.id,
     x: 800,
     y: 800,
-    angle: 0
+    angle: 0,
+    cRoom: roomName
   });
 
   // Update rooms list for lobby
